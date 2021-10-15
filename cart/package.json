@@ -1,7 +1,7 @@
 {
   "name": "cart",
   "version": "1.0.0",
-  "description": "",
+  "description": "this is the cart service that have maximum level of security",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

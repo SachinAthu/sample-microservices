@@ -1,7 +1,7 @@
 {
   "name": "product",
   "version": "1.0.0",
-  "description": "API for product service",
+  "description": "API for product service. this is the product service that have minimum level of security",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
