@@ -1,3 +1,5 @@
+// jsonwebtoken, jwt-decode, passport-oauth2
+
 var decoded = jwt.verify(token, 'shhhhh');
 console.log(decoded.foo)
  
@@ -36,3 +38,13 @@ var jwksClient = require('jwks-rsa');
 var client = jwksClient({
   jwksUri: 'https://sandrino.auth0.com/.well-known/jwks.json'
 });
+
+import jwt_decode from "jwt-decode";
+ 
+var token = "eyJ0eXAiO.../// jwt token";
+
+var decoded = jwt_decode(token);
+ 
+console.log(decoded);
+ 
+var decodedHeader = jwt_decode(token, { header: true });
