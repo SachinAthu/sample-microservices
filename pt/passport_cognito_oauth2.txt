@@ -1,0 +1,32 @@
+const passport = require('passport')
+
+const CognitoOAuth2Strategy = require('passport-cognito-oauth2');
+
+const options = {
+    callbackURL: 'https://myapp.com/auth/cognito/callback',
+    clientDomain: 'https://myapp.auth.us-west-2.amazoncognito.com',
+    clientID: '123-456-789',
+    clientSecret: 'shhh-its-a-secret',
+    region: 'us-west-2'
+};
+
+function verify(accessToken, refreshToken, profile, done) {
+    User.findOrCreate(profile, (err, user) => {
+        done(err, user);
+    });
+}
+
+passport.use(new CognitoOAuth2Strategy(options, verify));  
+
+passport.serializeUser((user, done) => done(null, user));
+
+passport.deserializeUser((obj, done) => done(null, obj));
+
+app.get('/auth/cognito',
+    passport.authenticate('cognito-oauth2')
+);
+
+app.get('/auth/cognito/callback',
+    passport.authenticate('cognito-oauth2'),
+    (req,res) => res.send(req.user)  
+    );

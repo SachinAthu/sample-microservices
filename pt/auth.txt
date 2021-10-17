@@ -1,0 +1,58 @@
+var auth = require('auth').connect({
+    connection: mongoose.createConnection('mongodb://localhost/auth-test')
+});
+
+Post.plugin(auth.ownable);
+
+step(
+    function() {
+        auth.signup({ email: 'me@email.com', password: 'password' }, this);
+    },
+    function(err, account) {
+        this.account = account;
+        var post = new Post({
+            message: 'Hello World!'
+        });
+        account.own(post);
+        post.save(this);
+    },
+    function() {
+        Post.find(this.account.ownQuery(), this);
+    },
+    function(err, post) {
+        console.log(post.message);
+    }
+);
+
+auth.Account.login({ token: tokenKey }, onLogin);
+
+auth.Account.login({ email: 'email', password: 'password' }, onLogin);
+
+user.getMainToken(function(null, token) {
+    console.log(token.key);
+    console.log(token.ttl); 
+    console.log(token.scope);
+})
+
+user.createToken({ item: Posts.collection.name, access: [access.POST] }, function(err, token) {
+    console.log(token.scope);
+});
+
+var access = require('auth').access;
+
+user2.authorized(post);
+
+user2.authorized(post, [access.POST]);
+
+user2.authorized(post, [access.GET]);
+
+user2.authorized(post, [access.GET, access.POST]);
+
+User.login({ token: aboveTokenKey }, function(err, user) {
+    user.authorized(post, [access.TRUE]);
+    user.authorized(post, [access.POST]);
+})
+
+Post.findOne(user.addToSearch(), function(err, post) {
+    user.authorized(post);
+})

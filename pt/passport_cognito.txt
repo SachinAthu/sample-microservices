@@ -1,0 +1,26 @@
+var CognitoStrategy = require('passport-cognito')
+
+passport.use(new CognitoStrategy({
+    userPoolId: '',
+    clientId: '',
+    region: ''
+},
+function(accessToken, idToken, refreshToken, user, cb) {
+    process.nextTick(function() {
+    ...
+    cb(null, user);
+    });
+}
+));
+
+$.ajax({
+    type: '',
+    url: '',
+    data: { username: username, password: password }
+})
+
+app.post('/auth/cognito',
+passport.authenticate('cognito', {
+    successRedirect: '',
+    failureRedirect: ''
+}));

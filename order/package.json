@@ -1,0 +1,21 @@
+{
+  "name": "cart",
+  "version": "1.0.0",
+  "description": "this is the cart service that have maximum level of security",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5",
+    "nodemon": "^2.0.7",
+    "http-auth": "4.1.6",
+    "passport": "^0.4.2",
+    "jsonwebtoken": "8.5.1"
+  }
+}
