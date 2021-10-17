@@ -1,4 +1,4 @@
-// passport, jsonwebtoken
+// passport, jsonwebtoken, jwtdecode
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
@@ -83,4 +83,33 @@ jwt.verify(token, cert, { audience: 'urn:foo', issuer: 'urn:issuer' }, function(
  
 var cert = fs.readFileSync('public.pem');
 jwt.verify(token, cert, { audience: 'urn:foo', issuer: 'urn:issuer', jwtid: 'jwtid' }, function(err, decoded) {});
+
+import jwt_decode from "jwt-decode";
+ 
+var token = "eyJ0eXAiO.../// jwt token";
+
+var decoded = jwt_decode(token);
+ 
+console.log(decoded);
+ 
+var decodedHeader = jwt_decode(token, { header: true });
+
+console.log(decodedHeader);
+
+const jwt_decode = require('jwt-decode');
+
+var CognitoStrategy = require('passport-cognito')
+
+passport.use(new CognitoStrategy({
+    userPoolId: '',
+    clientId: '',
+    region: ''
+},
+function(accessToken, idToken, refreshToken, user, cb) {
+    process.nextTick(function() {
+    ...
+    cb(null, user);
+    });
+}
+));
  
